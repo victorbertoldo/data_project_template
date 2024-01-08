@@ -2,6 +2,21 @@ import great_expectations as ge
 from great_expectations.dataset import PandasDataset
 
 def define_expectations_for_api_data():
+    """
+    Define expectations for API data.
+
+    This function loads a sample of your API data into a DataFrame and defines expectations for the data.
+    It expects the API data to be in a CSV file and assumes that the 'path/to/sample_api_data.csv' file exists.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+
+    Raises:
+    None
+    """
     # Load a sample of your API data into a DataFrame
     # For demonstration, replace with actual method of loading a sample data
     df = ge.read_csv('path/to/sample_api_data.csv')  # Sample API data
@@ -18,6 +33,18 @@ def define_expectations_for_api_data():
 
 
 def define_expectations_for_mssql_data():
+    """
+    Define the expectations for MSSQL data.
+
+    This function is used to define the expectations for MSSQL data. It does not take any parameters
+    and does not return any value.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
     # Similar function for MSSQL data...
     pass
 

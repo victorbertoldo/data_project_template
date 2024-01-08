@@ -9,6 +9,24 @@ logger = setup_logger('data_ingestion', 'data_ingestion.log')
 
 
 def run_data_ingestion():
+    """
+    Run the data ingestion process.
+
+    This function fetches data from an MSSQL database, inserts it into a PostgreSQL database,
+    fetches data from an API, and processes and inserts the API data. It logs the start and end
+    of the data ingestion process.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+
+    Raises:
+    Any exception that occurs during the data ingestion process.
+
+    """
+    
 
     logger.info("Data ingestion started.")
 

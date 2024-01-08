@@ -8,10 +8,28 @@ from processors.transform import sanitize_column_names
 
 class MSSQLDatabaseConnector:
     def __init__(self):
+        """
+        Initialize the object by creating a connection to the MSSQL database.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+        """
         self.connection = pymssql.connect(server=MSSQL_SERVER, user=MSSQL_USER, 
                                           password=MSSQL_PASSWORD, database=MSSQL_DATABASE)
 
     def fetch_data(self, query):
+        """
+        Fetches data from the database using the provided query.
+
+        Parameters:
+            query (str): The SQL query to fetch data from the database.
+
+        Returns:
+            list: A list of dictionaries representing the fetched data.
+        """
         cursor = self.connection.cursor(as_dict=True)
         cursor.execute(query)
         return cursor.fetchall()   
@@ -19,6 +37,15 @@ class MSSQLDatabaseConnector:
 
 class PostgresDatabaseConnector:
     def __init__(self):
+        """
+        Initializes a new instance of the class.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         self.connection = psycopg2.connect(
             user=POSTGRES_USER,
             password=POSTGRES_PASSWORD,
@@ -28,10 +55,31 @@ class PostgresDatabaseConnector:
         )
 
     def close_connection(self):
+        """
+        Close the connection to the database.
+
+        This function closes the connection to the database if it is open.
+
+        Parameters:
+            self (obj): The instance of the class.
+
+        Returns:
+            None
+        """
         if self.connection:
             self.connection.close()
 
     def check_and_create_database(self, database_name, schema_name):
+        """
+        Check if a database exists and create it if it doesn't.
+        
+        Parameters:
+            database_name (str): The name of the database to check and create.
+            schema_name (str): The name of the schema to check and create.
+        
+        Returns:
+            None
+        """
         # Connect to the default database to create a new database
         conn = psycopg2.connect(
             user=POSTGRES_USER,
@@ -70,6 +118,16 @@ class PostgresDatabaseConnector:
         cursor.close()
 
     def ensure_table_exists(self, data, table_name):
+        """
+        Ensure the specified table exists in the database.
+
+        Args:
+            data (list[dict]): The data used to define the columns of the table.
+            table_name (str): The name of the table to ensure exists.
+
+        Returns:
+            None
+        """
         cursor = self.connection.cursor()
 
         # Check if table exists
@@ -91,6 +149,16 @@ class PostgresDatabaseConnector:
         cursor.close()        
 
     def insert_data(self, data, table_name):
+        """
+        Inserts data into the specified table.
+
+        Args:
+            data (list[dict]): The data to be inserted into the table.
+            table_name (str): The name of the table.
+
+        Returns:
+            None
+        """
         cursor = self.connection.cursor()
         
         # Ensure the table exists
@@ -112,10 +180,33 @@ class PostgresDatabaseConnector:
         self.connection.commit()
 
     def close_connection(self):
+        """
+        Closes the connection to the database if it is currently open.
+
+        This function checks if the `connection` attribute of the object is not None.
+        If it is not None, it calls the `close()` method on the `connection` object
+        to close the connection.
+
+        Parameters:
+            self (object): The object instance.
+
+        Returns:
+            None
+        """
         if self.connection:
             self.connection.close()
 
     def insert_dataframe(self, dataframe, table_name):
+        """
+        Insert a Pandas DataFrame into a PostgreSQL table.
+
+        Args:
+            dataframe (pandas.DataFrame): The DataFrame to be inserted.
+            table_name (str): The name of the table in which the DataFrame will be inserted.
+
+        Returns:
+            None
+        """
         # Construct the connection string for SQLAlchemy engine
         engine_connection_string = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
         engine = sqlalchemy.create_engine(engine_connection_string)
