@@ -1,5 +1,5 @@
 import pandas as pd
-from config.settings import FILE_PATH
+from config import FILE_PATH
 
 class FileConnector:
     def __init__(self):

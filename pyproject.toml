@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "the-template"
+version = "0.1.0"
+description = "A template for a data project."
+authors = ["victorbertoldo <eu_viktor@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.4.4"
+great-expectations = "^0.18.7"
+pandas = "^2.1.4"
+requests = "^2.31.0"
+sqlalchemy = "^2.0.25"
+psycopg2-binary = "^2.9.9"
+pyodbc = "^5.0.1"
+python-dotenv = "^1.0.0"
+pymssql = "^2.2.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
