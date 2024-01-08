@@ -21,4 +21,9 @@ class FileConnector:
         Returns:
             pandas.DataFrame: The content of the file as a DataFrame.
         """
-        return pd.read_csv(self.file_path)
+        try:
+            df = pd.read_csv(self.file_path, sep=";", index_col=False, encoding= 'ISO-8859-1')
+            return df
+        except Exception as e:
+            print(f"Error reading the CSV file: {e}")
+            return None

@@ -212,4 +212,5 @@ class PostgresDatabaseConnector:
         engine = sqlalchemy.create_engine(engine_connection_string)
         
         # Use 'to_sql' to insert the dataframe
-        dataframe.to_sql(table_name, engine, if_exists='replace', index=False)
+        # TO A SPECIFIC SCHEMA
+        dataframe.to_sql(table_name, engine, if_exists='replace', index=False, schema='landing')  
