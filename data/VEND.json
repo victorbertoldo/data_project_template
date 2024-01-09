@@ -1,0 +1,73 @@
+[
+    {
+      "VE_CODIGO": "0001",
+      "VE_NOME": "JOSE",
+      "OKR": {
+        "VE_COMISAO": "11%",
+        "VE_META_MES": 900
+          },
+      "VE_SETOR": "FERRAGENS",
+      "VE_PASSWORD": "A123",
+      "VE_ACESSO": "ADMIN"
+    },
+    {
+      "VE_CODIGO": "0002",
+      "VE_NOME": "ANTONIO",
+      "OKR": {
+          "VE_COMISAO": "15%",
+          "VE_META_MES": 1200
+        },
+      "VE_SETOR": "FERRAGENS",
+      "VE_PASSWORD": "B123",
+      "VE_ACESSO": "USER"
+    },
+    {
+      "VE_CODIGO": "0003",
+      "VE_NOME": "SEBASTIAO",
+      "OKR": {
+        "VE_COMISAO": "11%",
+        "VE_META_MES": 800
+      },
+      "VE_SETOR": "FERRAMENTAS",
+      "VE_PASSWORD": "C123",
+      "VE_ACESSO": "USER"
+    },
+    {
+      "VE_CODIGO": "0004",
+      "VE_NOME": "PEDRO",
+      "OKR":{
+        "VE_COMISAO": "11%",
+        "VE_META_MES": 800
+      },
+      "VE_SETOR": "*",
+      "VE_PASSWORD": "D123",
+      "VE_ACESSO": "USER"
+    },
+    {
+      "VE_CODIGO": "0005",
+      "VE_NOME": "CARLOS",
+      "VE_COMISAO": "15%",
+      "VE_SETOR": "DIVERSOS",
+      "VE_META_MES": 1200,
+      "VE_PASSWORD": "E123",
+      "VE_ACESSO": "USER"
+    },
+    {
+      "VE_CODIGO": "0006",
+      "VE_NOME": "ROBERTO",
+      "VE_COMISAO": "10%",
+      "VE_SETOR": "FERRAGENS",
+      "VE_META_MES": 800,
+      "VE_PASSWORD": "F123",
+      "VE_ACESSO": "USER"
+    },
+    {
+      "VE_CODIGO": "0007",
+      "VE_NOME": "JOAO",
+      "VE_COMISAO": "9%",
+      "VE_SETOR": "FERRAMENTAS",
+      "VE_META_MES": 1800,
+      "VE_PASSWORD": "J123",
+      "VE_ACESSO": "ADMIN"
+    }
+  ]
