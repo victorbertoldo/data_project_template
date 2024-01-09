@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from config import FILE_PATH
-from utils.cli import print_success, print_failure, print_info, print_warning, progress_bar
+from utils.cli import print_success, print_failure, print_info, print_warning, progress_bar, print_highlight
 
 class FileConnector:
     def __init__(self):
@@ -19,7 +19,7 @@ class FileConnector:
         """
         processed_files = []
         for filename in os.listdir(self.directory_path):
-            print_info(f"Starting to process the file:{filename}", highlight=filename)
+            print_highlight(f"Starting to process the file : {filename}", highlight=filename)
             progress_bar(f"Processing {filename}", total_steps=10)
 
             try:
@@ -37,7 +37,7 @@ class FileConnector:
 
                 if dataframe is not None:
                     processed_files.append((dataframe, table_name))
-                    print_success("Success!")
+                    print_success(f"The file {filename} was processed successfully!", highlight="successfully")
                 else:
                     print_warning(f"The dataframe from table: {table_name} is empty!", highlight="empty")
 
@@ -85,7 +85,7 @@ class FileConnector:
         try:
             return pd.read_excel(file_path, index_col=False)
         except Exception as e:
-            print(f"Error reading Excel file {file_path}: {e}")
+            print_failure(f"Error reading Excel file {file_path}: {e}", highlight="Error")
             return None
 
     def read_json(self, file_path):

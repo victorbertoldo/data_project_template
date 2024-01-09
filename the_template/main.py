@@ -30,7 +30,7 @@ def run_data_ingestion():
 
     """
     
-
+    # show this message also in terminal
     logger.info("Data ingestion started.")
 
     try:
