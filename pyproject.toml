@@ -18,6 +18,9 @@ python-dotenv = "^1.0.0"
 pymssql = "^2.2.11"
 mkdocs = "^1.5.3"
 rich = "^13.7.0"
+mkdocstrings = "^0.24.0"
+mkdocstrings-python = "^1.8.0"
+mkdocs-material = "^9.5.3"
 
 
 [build-system]

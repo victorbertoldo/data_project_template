@@ -1,1 +1,11 @@
 site_name: The Data Project Template
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          rendering:
+            show_source: true
+theme:
+  name: material

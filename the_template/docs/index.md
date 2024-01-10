@@ -31,3 +31,12 @@ Guidelines on how you can contribute to the project, report issues, and suggest 
 ## Contact
 
 Information on how to get in touch for support or inquiries.
+
+
+
+# Welcome to Our Project Documentation
+
+Here you will find all the information about our project.
+
+[Learn more about the project](the_project.md)
+

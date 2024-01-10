@@ -16,7 +16,7 @@ class DataProcessor:
         df = pd.DataFrame(data)
 
         # Insert the DataFrame into the PostgreSQL database
-        self.insert_into_postgres(df, "landing.dummy_posts_comments")
+        self.insert_into_postgres(df, "dummy_posts_comments")
 
     def insert_into_postgres(self, dataframe, table_name):
         """

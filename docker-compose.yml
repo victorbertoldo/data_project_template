@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1432:1433"  # External:Internal
+    volumes:
+      - ./data:/data
+    command:
+      - /bin/bash
+      - -c
+      - |
+        /opt/mssql/bin/sqlservr &
+        sleep 60
+        iconv -f CP1252 -t UTF-8 /data/Escolas.csv > /data/yourfile_utf8.csv
+        sleep 5
+        /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U SA -P "YourStrong!Passw0rd" -Q "CREATE DATABASE source"
+        sleep 5
+        /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U SA -P "YourStrong!Passw0rd" -d source -i /data/create_inep_table.sql
+        sleep 5
+        /opt/mssql-tools/bin/bcp source.dbo.escolas_inep in "/data/yourfile_utf8.csv" -c -t';' -S localhost -U SA -P "YourStrong!Passw0rd"
+        wait
+
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 500M
+
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "test"
+    ports:
+      - "5433:5432" # Change the first number to use a custom port
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 200M
+
+volumes:
+  mssql_data:
+  postgres_data:

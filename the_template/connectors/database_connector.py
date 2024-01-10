@@ -1,8 +1,8 @@
 import psycopg2
 import pymssql
 import sqlalchemy
-from config import POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_SERVER, POSTGRES_PORT, POSTGRES_DB
-from config import MSSQL_SERVER, MSSQL_USER, MSSQL_PASSWORD, MSSQL_DATABASE
+from config import POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_SERVER, POSTGRES_PORT, POSTGRES_DB, POSTGRES_DB_CONN
+from config import MSSQL_SERVER, MSSQL_USER, MSSQL_PASSWORD, MSSQL_DATABASE, MSSQL_PORT
 
 from processors.transform import sanitize_column_names
 
@@ -18,7 +18,7 @@ class MSSQLDatabaseConnector:
         None
         """
         self.connection = pymssql.connect(server=MSSQL_SERVER, user=MSSQL_USER, 
-                                          password=MSSQL_PASSWORD, database=MSSQL_DATABASE)
+                                          password=MSSQL_PASSWORD, database=MSSQL_DATABASE, port=MSSQL_PORT)
 
     def fetch_data(self, query):
         """
@@ -51,7 +51,7 @@ class PostgresDatabaseConnector:
             password=POSTGRES_PASSWORD,
             host=POSTGRES_SERVER,
             port=POSTGRES_PORT,
-            database=POSTGRES_DB
+            database=POSTGRES_DB_CONN
         )
 
     def close_connection(self):
@@ -93,6 +93,7 @@ class PostgresDatabaseConnector:
         # Create database if it doesn't exist
         cursor = conn.cursor()
         cursor.execute(f"SELECT 1 FROM pg_database WHERE datname = '{database_name}'")
+        print(f"Database {database_name} not found. Creating database...")
         if not cursor.fetchone():
             cursor.execute(f"CREATE DATABASE {database_name}")
         cursor.close()

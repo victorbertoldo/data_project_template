@@ -51,6 +51,8 @@ def run_data_ingestion():
         file_connector = FileConnector()
         file_data_list = file_connector.process_files()
 
+        logger.info("Starting Inserting data (file or api) into PostgreSQL")
+        logger.info(f"Connecting to PostgreSQL...")
         postgres_connector = PostgresDatabaseConnector()
         for dataframe, table_name in file_data_list:
             # Dynamically flatten the DataFrame if it contains nested structures
